@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ShelfItemData from '../ShelfItemData';
 import ShelfItemCategoryList from './ShelfItemCategoryList';
 
-const ShelfItem = ({item}) => {
+const ShelfItem = ({item, changeCategoryFn}) => {
     return(
         <li key={item.id}>
         <div className="book">
@@ -11,7 +11,9 @@ const ShelfItem = ({item}) => {
             <div className="book-cover" 
                  style={{ width: 128, height: 188, backgroundImage: `url(${item.imageLinks.thumbnail})`}}>
             </div>
-            <ShelfItemCategoryList itemId={item.id} actualCategory={item.shelf}/>
+            <ShelfItemCategoryList itemId={item.id}
+                                   actualCategory={item.shelf}
+                                   changeCategoryFn={changeCategoryFn}/>
           </div>
           <div className="book-title">{item.title}</div>
           <div className="book-authors">{item.author}</div>

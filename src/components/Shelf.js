@@ -5,7 +5,7 @@ import categories from '../categories';
 /*
   A component that represents a List of Books 
 */
-const Shelf = ({items, category}={items:[],category:''}) =>{
+const Shelf = ({items, category, changeCategoryFn}={items:[],category:''}) =>{
     //items = (items === undefined ? [] : items);
     return(
           <div className="bookshelf">
@@ -13,7 +13,9 @@ const Shelf = ({items, category}={items:[],category:''}) =>{
             <div className="bookshelf-books">          
               <ol className="books-grid">
                 {items.map (item => (
-                    <ShelfItem item={item} key={items.id}/>))}
+                    <ShelfItem item={item}
+                               changeCategoryFn={changeCategoryFn}
+                               key={items.id}/>))}
               </ol>
             </div>
           </div>
@@ -23,7 +25,8 @@ const Shelf = ({items, category}={items:[],category:''}) =>{
 
 Shelf.propTypes = {
 //    bookListCategory: PropTypes.string.isRequired,
-//    books: PropTypes.array.isRequired
+    //    books: PropTypes.array.isRequired
+    //changeCategoryFn
 };
 
 export default Shelf;

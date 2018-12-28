@@ -5,14 +5,13 @@ import categories from '../categories.js';
 /**
    Component that represents the list of categories that a item can have
  */
-const ShelfItemCategoryList= ({itemId, actualCategory}) =>{
-        
+const ShelfItemCategoryList= ({itemId, actualCategory, changeCategoryFn}) =>{
     return(
         <div className="book-shelf-changer">
-          <select>
+          <select onChange={event => changeCategoryFn(itemId, event.target.value)}>
             <option disabled>Move To</option>
             {categories.map(({id, message}) =>
-                            <option value={id} disabled={id===actualCategory}
+                            <option key={id} value={id} disabled={id===actualCategory}
                                     selected={id===actualCategory}>
                                {message}
                              </option>
@@ -22,7 +21,7 @@ const ShelfItemCategoryList= ({itemId, actualCategory}) =>{
 };
 
 ShelfItemCategoryList.propTypes = {
-    id: PropTypes.string.isRequired,
+    itemId: PropTypes.string.isRequired,
     actualCategory: PropTypes.string
 };
 

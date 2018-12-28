@@ -6,21 +6,20 @@ import ShelfItemData from './ShelfItemData';
 import categories from "./categories";
 
 class BooksApp extends React.Component {
-  state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-      showSearchPage: false,
-      categories: categories,
-      items: []
-  }
+    state = {
+        /**
+         * TODO: Instead of using this state variable to keep track of which page
+         * we're on, use the URL in the browser's address bar. This will ensure that
+         * users can use the browser's back and forward buttons to navigate between
+         * pages, as well as provide a good URL they can bookmark and share.
+         */
+        showSearchPage: false,
+        categories: categories,
+        items: []
+    }
 
     componentDidMount(){
-        /*Requests the data from the server  */ 
-        
+        /* Requests the data from the server */
         BooksAPI.getAll().then(data =>{
             this.setState({
                 items: ShelfItemData.processShelfItemsFromAPI(data),
@@ -28,6 +27,18 @@ class BooksApp extends React.Component {
             });
         });
     }
+
+    changeCategoryFn = (bookId, newCategory) => {
+        newCategory = (newCategory === "None" ? "" : newCategory);
+        
+        BooksAPI.update(bookId, newCategory).then(res => {
+            console.log(this.state);
+            const items = this.state.items;
+            items.filter(book=> book.id === bookId).forEach(book=>book.shelf=newCategory);
+            this.setState({items: items});
+        });
+    }
+    
 
   render() {
     return (
@@ -58,11 +69,14 @@ class BooksApp extends React.Component {
               <div className="list-books-title">
                 <h1>MyReads</h1>
               </div>
-              <ShelfList items={this.state.items} categories={this.state.categories}>
+              <ShelfList items={this.state.items}
+                         categories={this.state.categories}
+                         changeCategoryFn={this.changeCategoryFn}>
                 <div className="open-search">
                   <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
                 </div>
               </ShelfList>
+              <div className="open-search"><button>Add a book</button></div>
             </div>
         )}
       </div>

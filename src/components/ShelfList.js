@@ -6,7 +6,7 @@ import Shelf from './Shelf.js';
 /**
    A component that represents a List Of Lists of Books
 */
-const ShelfList = ({categories, items}={categories:[], items:[]}) => {
+const ShelfList = ({categories, items, changeCategoryFn}={categories:[], items:[]}) => {
     console.log(categories);
     console.log(items);
     
@@ -14,7 +14,7 @@ const ShelfList = ({categories, items}={categories:[], items:[]}) => {
           <div className="list-books-content">
             {
                 categories.map(({id, message}) =>
-                               <Shelf category={message} items={items.filter(item=>item.shelf===id)} key={id}/>)
+                               <Shelf category={message} items={items.filter(item=>item.shelf===id)} key={id} changeCategoryFn={changeCategoryFn}/>)
             }
           </div>
     );
