@@ -2,7 +2,7 @@
    Represents a ShelfItem Data 
 */
 class ShelfItemData{
-    constructor({id, shelf, title, subtitle, authors, imageLinks }){
+    constructor({id, shelf, title, subtitle, authors, imageLinks}){
         this.id = id;
         this.shelf = shelf;
         this.title = title;
@@ -10,7 +10,8 @@ class ShelfItemData{
         this.authors = authors;
         this.imageLinks=imageLinks;
     }
-    
+
+   
     /**
        return a list of SHelfItem Data
     */

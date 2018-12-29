@@ -11,7 +11,7 @@ const ShelfItem = ({item, changeCategoryFn}) => {
             <div className="book-cover" 
                  style={{ width: 128, height: 188, backgroundImage: `url(${item.imageLinks.thumbnail})`}}>
             </div>
-            <ShelfItemCategoryList itemId={item.id}
+            <ShelfItemCategoryList key={item.id} itemId={item.id}
                                    actualCategory={item.shelf}
                                    changeCategoryFn={changeCategoryFn}/>
           </div>
@@ -23,7 +23,8 @@ const ShelfItem = ({item, changeCategoryFn}) => {
 };
 
 ShelfItem.propTypes = {
-    item: PropTypes.object.isRequired,//TODO must be a ShelfItemData
+    item: PropTypes.instanceOf(ShelfItemData).isRequired,
+    changeCategoryFn: PropTypes.func.isRequired
 };
 
 export default ShelfItem;

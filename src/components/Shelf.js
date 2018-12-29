@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ShelfItem from './ShelfItem';
-import categories from '../categories';
+
 /*
-  A component that represents a List of Books 
+  A component that represents a List of ShelfItems 
 */
 const Shelf = ({items, category, changeCategoryFn}={items:[],category:''}) =>{
     //items = (items === undefined ? [] : items);
     return(
-          <div className="bookshelf">
+        <div className="bookshelf">
             <h2 className="bookshelf-title">{category}</h2>
             <div className="bookshelf-books">          
               <ol className="books-grid">
                 {items.map (item => (
-                    <ShelfItem item={item}
-                               changeCategoryFn={changeCategoryFn}
-                               key={items.id}/>))}
+                    <ShelfItem key={items.id}
+                               item={item}
+                               changeCategoryFn={changeCategoryFn}/>))}
               </ol>
             </div>
           </div>
@@ -24,9 +24,9 @@ const Shelf = ({items, category, changeCategoryFn}={items:[],category:''}) =>{
 
 
 Shelf.propTypes = {
-//    bookListCategory: PropTypes.string.isRequired,
-    //    books: PropTypes.array.isRequired
-    //changeCategoryFn
+    items: PropTypes.array.isRequired,
+    category: PropTypes.string.isRequired,
+    changeCategoryFn: PropTypes.func.isRequired
 };
 
 export default Shelf;

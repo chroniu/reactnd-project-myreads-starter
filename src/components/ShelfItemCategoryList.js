@@ -8,7 +8,7 @@ import categories from '../categories.js';
 const ShelfItemCategoryList= ({itemId, actualCategory, changeCategoryFn}) =>{
     return(
         <div className="book-shelf-changer">
-          <select onChange={event => changeCategoryFn(itemId, event.target.value)}>
+          <select key={itemId} onChange={event => changeCategoryFn(itemId, event.target.value)}>
             <option disabled>Move To</option>
             {categories.map(({id, message}) =>
                             <option key={id} value={id} disabled={id===actualCategory}
