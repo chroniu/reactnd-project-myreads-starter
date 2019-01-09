@@ -1,19 +1,16 @@
 import React from 'react';
-import * as BooksAPI from './BooksAPI';
-import './App.css';
 import ShelfList from './components/ShelfList';
-import ShelfItemData from './ShelfItemData';
 import SearchPage from './components/SearchPage';
-import categories from "./categories";
 import {Route, Link} from 'react-router-dom';
-import CategoriesSelector from './components/CategoriesSelector';
-
+import PropTypes from 'prop-types';
 
 const BooksApp = ({items, categories, chgCategory}={items:[],categories:[],chgCategory:null}) =>{
     return(
     <div className="app">
         <Route path='/search' render={({history})=>(
-            <SearchPage changeCategoryFn={(bookId, newCategory) =>{chgCategory(bookId, newCategory);
+            <SearchPage
+              categories={categories}
+              chgCategory={(bookId, newCategory) =>{chgCategory(bookId, newCategory);
                                                                    history.push('/');}}/>
         )}/>
         <Route exact path='/' render={() =>(
@@ -23,7 +20,7 @@ const BooksApp = ({items, categories, chgCategory}={items:[],categories:[],chgCa
               </div>
               <ShelfList items={items}
                          categories={categories}
-                         changeCategoryFn={chgCategory}>
+                         chgCategory={chgCategory}>
               </ShelfList>
             </div>
         )}/>
@@ -35,7 +32,13 @@ const BooksApp = ({items, categories, chgCategory}={items:[],categories:[],chgCa
 
         
       </div>);
-}
+};
+
+BooksApp.proptypes = {
+    items: PropTypes.array.isRequired,
+    chgCategory: PropTypes.func.isRequired,
+    categories: PropTypes.object
+};
 
 
 export default BooksApp;

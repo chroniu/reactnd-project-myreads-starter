@@ -5,12 +5,18 @@ import ShelfItemData from '../ShelfItemData';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+/**
+   @description Components that permits the user to search new itens and change their categories
+*/
 class SearchPage  extends React.Component{
 
     state = {
         items : []
     }
-    
+
+    /**
+       Uses the input from the user to search for itens and fetchs the result to show in the page
+     */
     requestSearch = (text) => {
         if( text === undefined) return;
 
@@ -40,7 +46,10 @@ class SearchPage  extends React.Component{
                 </div>
               </div>
               <div className="search-books-results">
-                <Shelf items={this.state.items} category='Founded Books' changeCategoryFn={this.props.changeCategoryFn}/>
+                <Shelf items={this.state.items}
+                       category='Founded Books'
+                       chgCategory={this.props.chgCategory}
+                       categories={this.props.categories}/>
                 
               </div>
             </div>  
@@ -49,7 +58,8 @@ class SearchPage  extends React.Component{
 };
 
 SearchPage.PropTypes = {
-    changeCategoryFn: PropTypes.func.isRequired
+    chgCategory: PropTypes.func.isRequired,
+    categories: PropTypes.object.isRequired
 };
 
 export default SearchPage;

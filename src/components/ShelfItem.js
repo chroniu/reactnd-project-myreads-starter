@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import ShelfItemData from '../ShelfItemData';
 import ShelfItemCategoryList from './ShelfItemCategoryList';
 
-import { DragSource } from 'react-dnd';
-
-const ShelfItem = ({item, changeCategoryFn, categories}) => {
+const ShelfItem = ({item, chgCategory, categories}) => {
     return(
         <li key={item.id}>
         <div className="book">
@@ -16,7 +14,7 @@ const ShelfItem = ({item, changeCategoryFn, categories}) => {
             <ShelfItemCategoryList key={item.id}
                                    itemId={item.id}
                                    actualCategory={item.shelf}
-                                   chgCategory={changeCategoryFn}
+                                   chgCategory={chgCategory}
                                    categories={categories}/>
           </div>
           <div className="book-title">{item.title}</div>

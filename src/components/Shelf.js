@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ShelfItem from './ShelfItem';
 
-/*
-  A component that represents a List of ShelfItems 
+/**
+  @description A component that represents a Shelf. 
 */
-const Shelf = ({items, category, chgCategory, categories}={items:[],category:''}) =>{
+const Shelf = ({items, category, chgCategory, categories}={items:[],category:'', chgCategory:null, categories:[]}) =>{
     //items = (items === undefined ? [] : items);
     return(
         <div className="bookshelf">
@@ -27,7 +27,8 @@ const Shelf = ({items, category, chgCategory, categories}={items:[],category:''}
 Shelf.propTypes = {
     items: PropTypes.array.isRequired,
     category: PropTypes.string.isRequired,
-    chgCategory: PropTypes.func.isRequired
+    chgCategory: PropTypes.func.isRequired,
+    categories: PropTypes.object
 };
 
 export default Shelf;
