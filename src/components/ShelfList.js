@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 import Shelf from './Shelf.js';
 
 /**
-   A component that represents a List ShelfItems
+   @description A component that represents a list Shelfs
 */
-const ShelfList = ({categories, items, changeCategoryFn}={categories:[], items:[]}) => {
+const ShelfList = ({categories, items, chgCategory}={categories:[], items:[], chgCategory:null}) => {
     return(
         <div className="list-books-content">{
-            categories.map(({id, message}) =>
-                           <Shelf category={message} items={items.filter(item=>item.shelf===id)} key={id} changeCategoryFn={changeCategoryFn}/>)
+            categories.filter(c => c.show).map(({id, message}) =>
+                           <Shelf category={message}
+                                  items={items.filter(item=>item.shelf===id)}
+                                  key={id}
+                                  chgCategory={chgCategory}
+                                  categories={categories}/>)
         }
         </div>
     );
@@ -18,7 +22,7 @@ const ShelfList = ({categories, items, changeCategoryFn}={categories:[], items:[
 ShelfList.propTypes = {
     categories: PropTypes.array.isRequired,
     items: PropTypes.array,
-    changeCategoryFn: PropTypes.func.isRequired
+    chgCategory: PropTypes.func.isRequired
 };
 
 export default ShelfList;

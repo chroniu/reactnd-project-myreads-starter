@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import ShelfItemData from '../ShelfItemData';
 import ShelfItemCategoryList from './ShelfItemCategoryList';
 
-const ShelfItem = ({item, changeCategoryFn}) => {
+import { DragSource } from 'react-dnd';
+
+const ShelfItem = ({item, changeCategoryFn, categories}) => {
     return(
         <li key={item.id}>
         <div className="book">
@@ -11,9 +13,11 @@ const ShelfItem = ({item, changeCategoryFn}) => {
             <div className="book-cover" 
                  style={{ width: 128, height: 188, backgroundImage: `url(${item.imageLinks.thumbnail})`}}>
             </div>
-            <ShelfItemCategoryList key={item.id} itemId={item.id}
+            <ShelfItemCategoryList key={item.id}
+                                   itemId={item.id}
                                    actualCategory={item.shelf}
-                                   changeCategoryFn={changeCategoryFn}/>
+                                   chgCategory={changeCategoryFn}
+                                   categories={categories}/>
           </div>
           <div className="book-title">{item.title}</div>
           <div className="book-authors">{item.author}</div>
@@ -24,7 +28,8 @@ const ShelfItem = ({item, changeCategoryFn}) => {
 
 ShelfItem.propTypes = {
     item: PropTypes.instanceOf(ShelfItemData).isRequired,
-    changeCategoryFn: PropTypes.func.isRequired
+    chgCategory: PropTypes.func.isRequired
 };
+
 
 export default ShelfItem;

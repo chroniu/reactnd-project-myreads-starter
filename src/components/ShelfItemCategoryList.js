@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import categories from '../categories.js';
 
 /**
-   Component that represents the list of categories that a item can have
+   @description Component that gives a list of categories with a selector
  */
-const ShelfItemCategoryList= ({itemId, actualCategory, changeCategoryFn}) =>{
+const ShelfItemCategoryList= ({itemId, actualCategory, chgCategoryFn, categories}) =>{
     return(
         <div className="book-shelf-changer">
-          <select key={itemId} onChange={event => changeCategoryFn(itemId, event.target.value)}>
+          <select key={itemId} onChange={event => chgCategoryFn(itemId, event.target.value)}>
             <option disabled>Move To</option>
             {categories.map(({id, message}) =>
                             <option key={id} value={id} disabled={id===actualCategory}
@@ -22,7 +21,8 @@ const ShelfItemCategoryList= ({itemId, actualCategory, changeCategoryFn}) =>{
 
 ShelfItemCategoryList.propTypes = {
     itemId: PropTypes.string.isRequired,
-    actualCategory: PropTypes.string
+    actualCategory: PropTypes.string,
+    chgCategoryFn: PropTypes.func
 };
 
 export default ShelfItemCategoryList;
