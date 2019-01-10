@@ -4,7 +4,6 @@ import './App.css';
 import ShelfItemData from './ShelfItemData';
 import BooksApp from './BooksApp';
 import categories from './categories';
-import {DragDropContext} from 'react-beautiful-dnd';
 
 /**
    @description Container component for the app
@@ -18,18 +17,20 @@ class BooksAppContainer extends React.Component {
     componentDidMount(){
         /* Requests the data from the server */
         BooksAPI.getAll().then(data =>{
-            this.setState({
-                items: ShelfItemData.processShelfItemsFromAPI(data),
-                categories:categories
-            });
-        });
+            ShelfItemData.processShelfItemsFromAPI(data).then(
+                items => 
+                     this.setState({
+                         items: items,
+                         categories:categories
+                     })
+            );});
     }
 
    
     chgShowedCategories = (id) => {
         this.setState((state, props) =>{
             let ccategories = state.categories.slice(0);
-            if(id == 'all'){
+            if(id === 'all'){
                 ccategories.filter(c => c.id!=='None').forEach(s => s.show = true);
                 
             }else{
@@ -51,6 +52,7 @@ class BooksAppContainer extends React.Component {
         newCategory = (newCategory === "None" ? "" : newCategory);
 
         BooksAPI.update(bookId, newCategory).then(res => {
+            console.log(res);
             const items = this.state.items.filter(book=> book.id !== bookId);
 
             BooksAPI.get(bookId).then(data =>{

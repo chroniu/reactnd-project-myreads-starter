@@ -11,7 +11,7 @@ const CategoriesList = ({categories, chgShowedCategories}) => {
         <button className="button-category"
                 onClick={(e) => chgShowedCategories('all')}>All
         </button>
-          {categories.filter(c => c.id != 'None').map(
+          {categories.filter(c => c.id !== 'None').map(
               ({id, message}) => 
                   <button className="button-category"
                           onClick={(e) => chgShowedCategories(id)}>{message}</button>
