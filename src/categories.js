@@ -1,8 +1,3 @@
-
-import read from './icons/read.svg';
-import currentlyReading from './icons/currentlyReading.svg';
-import wantToRead from './icons/wantToRead.svg';
-
 const categories = [
     {id: "None", message:"None", show:false},
     {id: "currentlyReading", message:"Currently Reading",
