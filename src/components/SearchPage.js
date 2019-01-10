@@ -4,6 +4,22 @@ import Shelf from './Shelf';
 import ShelfItemData from '../ShelfItemData';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Typeahed from 'react-typeahead';
+import suggestions from './suggestions.js';
+import Suggestor from 'ssuggestor';
+
+
+// from https://codepen.io/anon/pen/NeLjYK?editors=1111
+const theme = {
+    "root": "input-group ss-root",
+    "input": "form-control ss-input",
+    "arrow": "ss-arrow",
+    "close": "ss-remove",
+    "list": "dropdown-menu ss-list",
+    "item": "dropdown-item",
+    "activeItem": "ss-over-item"
+};
+
 
 /**
    @description Components that permits the user to search new itens and change their categories
@@ -42,7 +58,12 @@ class SearchPage  extends React.Component{
               <div className="search-books-bar">
                 <Link className="close-search" to='/'>Close</Link>
                 <div className="search-books-input-wrapper">
-                  <input autoFocus type="text" placeholder="Search by title or author" onChange={event => {this.requestSearch(event.target.value);}}/>
+                  <Suggestor 
+                    list={suggestions}
+                    autoFocus
+                    placeholder="Search by title or author"
+
+                    onChange={value => {this.requestSearch(value);}}/>
                 </div>
               </div>
               <div className="search-books-results">
