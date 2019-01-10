@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Shelf from './Shelf.js';
+import ShelfContainer from './ShelfContainer.js';
 
 /**
    @description A component that represents a list Shelfs
@@ -8,12 +8,13 @@ import Shelf from './Shelf.js';
 const ShelfList = ({categories, items, chgCategory}={categories:[], items:[], chgCategory:null}) => {
     return(
         <div className="list-books-content">{
-            categories.filter(c => c.show).map(({id, message}) =>
-                           <Shelf category={message}
-                                  items={items.filter(item=>item.shelf===id)}
-                                  key={id}
-                                  chgCategory={chgCategory}
-                                  categories={categories}/>)
+            categories.filter(c => c.show).map(
+                ({id, message}) =>
+                    <ShelfContainer category={{key:id, name:message}}
+                           items={items.filter(item=>item.shelf===id)}
+                           key={id}
+                           chgCategory={chgCategory}
+                           categories={categories}/>)
         }
         </div>
     );

@@ -5,15 +5,15 @@ import ShelfItem from './ShelfItem';
 /**
   @description A component that represents a Shelf. 
 */
-const Shelf = ({items, category, chgCategory, categories}={items:[],category:'', chgCategory:null, categories:[]}) =>{
+const Shelf = ({items, category, chgCategory, categories}={items:[], category:{key:'',name:''}, chgCategory:null, categories:[]})=>{
     //items = (items === undefined ? [] : items);
     return(
         <div className="bookshelf">
-            <h2 className="bookshelf-title">{category}</h2>
+            <h2 className="bookshelf-title">{category.name}</h2>
             <div className="bookshelf-books">          
               <ol key={category} className="books-grid">
                 {items.map (item => (
-                    <ShelfItem key={items.id}
+                    <ShelfItem key={item.id}
                                item={item}
                                chgCategory={chgCategory}
                                categories={categories}/>))}
@@ -26,9 +26,9 @@ const Shelf = ({items, category, chgCategory, categories}={items:[],category:'',
 
 Shelf.propTypes = {
     items: PropTypes.array.isRequired,
-    category: PropTypes.string.isRequired,
+    category: PropTypes.object.isRequired,
     chgCategory: PropTypes.func.isRequired,
-    categories: PropTypes.object
+    categories: PropTypes.object,
 };
 
 export default Shelf;

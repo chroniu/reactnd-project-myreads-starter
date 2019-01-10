@@ -4,6 +4,8 @@ import './App.css';
 import ShelfItemData from './ShelfItemData';
 import BooksApp from './BooksApp';
 import categories from './categories';
+import {DragDropContext} from 'react-beautiful-dnd';
+
 /**
    @description Container component for the app
 */
@@ -12,7 +14,7 @@ class BooksAppContainer extends React.Component {
         categories: categories,
         items: []        
     }
-
+    
     componentDidMount(){
         /* Requests the data from the server */
         BooksAPI.getAll().then(data =>{
@@ -23,6 +25,28 @@ class BooksAppContainer extends React.Component {
         });
     }
 
+   
+    chgShowedCategories = (id) => {
+        this.setState((state, props) =>{
+            let ccategories = state.categories.slice(0);
+            if(id == 'all'){
+                ccategories.filter(c => c.id!=='None').forEach(s => s.show = true);
+                
+            }else{
+                ccategories.filter(c => c.id===id).forEach(s => s.show = true);
+                ccategories.filter(c => c.id!==id).forEach(s => s.show = false);
+            }
+            return{
+                categories: ccategories                   
+            };
+        });
+    }
+       
+    /**
+       @description Changes the shelf of an item
+       @param bookId - the id of the item
+       @param newCategory - new shelf category of the item
+     */
     changeCategoryFn = (bookId, newCategory) => {
         newCategory = (newCategory === "None" ? "" : newCategory);
 
@@ -37,12 +61,13 @@ class BooksAppContainer extends React.Component {
             });
         });
     }
-    
+
     render() {
-        return (
+        return(
             <BooksApp chgCategory={this.changeCategoryFn}
                       categories={this.state.categories}
-                      items={this.state.items}/>
+                      items={this.state.items}
+                      chgShowedCategories={this.chgShowedCategories}/>
         );
     }
 }
