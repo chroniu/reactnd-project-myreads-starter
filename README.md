@@ -1,48 +1,49 @@
 # MyReads Project
 
-## Propósito do Projeto
-Este projeto foi construído para o **Nanodegree React Developer***. O objetivo deste projeto é implementar uma aplicação em React demonstrando conhecimento e entendimento sobre a estrutura de um aplicativo React além da utilização de boas práticas de programação na implementação. A aplicação consiste em uma estante de livros que permite selecionar e classificar livros em categorias.
+## Project Purpose
 
-## Instalando e carregando o App
+This project was built for the **Nanodegree React Developer**. The purpose of this project is to implement an application in React demonstrating knowledge and understanding about the structure of a React application in addition to using good programming practices in the implementation. The application consists of a bookcase that allows you to select and sort books into categories.
 
-Para rodar o projeto é necessário possuir instalado o Node >= 8.x e o gerenciador de pacotes npm.
+## Installing and loading the App
 
-Para clonar e instalar as dependencias do projeto, no terminal use os comandos:
+To run the project it is necessary to have installed the Node> = 8.x and the package manager npm.
+
+To clone and install the project dependencies, in the terminal use the commands:
 ```bash
    git clone https://github.com/chroniu/reactnd-project-myreads-starter.git
    cd reactnd-project-myreads-starter
    npm install
 ```
 
-Com as dependencias instaladas, basta ir na pasta do projeto e digitar no terminal:
+With the dependencies installed, just go to the project folder and type in the terminal:
 ```bash
    npm start
 ```
 
-O servidor do aplicativo será inicializado e o aplicativo poderá ser acessado no endereço informado na saída do comando anterior. Geralmente será acessível no endereço: [http://localhost:3000].
+The application server will be initialized and the application will be accessible at the address given in the output of the previous command. Usually it will be accessible at: [http://localhost:3000].
 
 ## Instruções de uso
 
-O applicativo permite classificar livros em 3 categorias:
+The application allows you to sort books into 3 categories:
 - Currently Reading
 - Want to Read 
 - Read
 
-Existem 2 modos para modificar a categoria de um livro:
+There are 2 ways to modify a book category:
 
-- Utilizando o botão de seleção como mostra a imagem abaixo.
+- Using the select menu as shown in the image below.
 
 ![Changing Category Menu](selecting-category.png "changing category using the menu")
 
 
 - Drag/Drop
 
-Selecionando e arrastando um livro de uma categoria para outra. Esse recurso só pode ser utilizado na tela inicial do aplicativo.
+Selecting and dragging a book from one category to another. This feature can only be used on the application's home screen.
 
 ![Changing Category Drag/Drop](selecting-category-draging.png "changing category by dragging a book")
 
 
-Para adicionar um novo livro, basta clicar no botão verde no canto inferior direito da página e digitar o termo de busca ou selecionar alguma sugestão.
+To add a new book, just click the green button in the lower right corner of the page and type the search term or select any on the suggestions.
 
 ![Searching](searching.png "searching")
 
@@ -51,8 +52,9 @@ Para adicionar um novo livro, basta clicar no botão verde no canto inferior dir
 The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md).
 
 
-## Bibliotecas extras utilizadas
+## Extra libraries 
 
-Esse projeto utilizou as bibliotecas:
- - react-autosuggest: para mostrar sugestões de busca
- - autosuggest-highlight: melhora a experiência do usuário na visualização das sugestões de busca.
+This project used the following libraries:
+ - react-autosuggest: to show search suggestions
+ - autosuggest-highlight: to improve the user experience in viewing search suggestions.
+ 
