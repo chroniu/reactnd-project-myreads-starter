@@ -10,11 +10,9 @@ class ShelfContainer extends React.Component{
     state = {onDrag:false};
     
     onDrop = (ev, category, callback) =>{
-//        console.log("onDrop");
         let id = ev.dataTransfer.getData("id");
         callback(id, category.key);
         this.setState({onDrag: false});
-        
     }
 
     onDragOver = (event) => {
@@ -25,7 +23,6 @@ class ShelfContainer extends React.Component{
     onDragLeave = (event) => {
         event.preventDefault();
         this.setState({onDrag: false});
- //       console.log("dragLeave", onDrag);
     }
 
     render(){
@@ -49,7 +46,7 @@ ShelfContainer.propTypes = {
     items: PropTypes.array.isRequired,
     category: PropTypes.object.isRequired,
     chgCategory: PropTypes.func.isRequired,
-    categories: PropTypes.object,
+    categories: PropTypes.array,
 };
 
 export default ShelfContainer;

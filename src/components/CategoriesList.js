@@ -13,7 +13,8 @@ const CategoriesList = ({categories, chgShowedCategories}) => {
         </button>
           {categories.filter(c => c.id !== 'None').map(
               ({id, message}) => 
-                  <button className="button-category"
+                  <button key={id}
+                          className="button-category"
                           onClick={(e) => chgShowedCategories(id)}>{message}</button>
           )}
         </div>
@@ -21,7 +22,7 @@ const CategoriesList = ({categories, chgShowedCategories}) => {
 };
 
 CategoriesList.propTypes ={
-    categories: PropTypes.object,
+    categories: PropTypes.array,
     changeCategoryList: PropTypes.func
 };
 

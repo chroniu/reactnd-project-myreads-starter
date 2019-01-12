@@ -26,7 +26,7 @@ const Shelf = ({items, category, chgCategory, categories}={items:[], category:{k
 
 Shelf.propTypes = {
     items: PropTypes.array.isRequired,
-    category: PropTypes.string.isRequired,
+    category: PropTypes.object.isRequired,
     chgCategory: PropTypes.func.isRequired,
     categories: PropTypes.array,
 };

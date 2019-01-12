@@ -36,7 +36,7 @@ const ShelfItem = ({item, chgCategory, categories}) => {
 ShelfItem.propTypes = {
     item: PropTypes.instanceOf(ShelfItemData).isRequired,
     chgCategory: PropTypes.func.isRequired,
-    categories: PropTypes.object
+    categories: PropTypes.array
 };
 
 

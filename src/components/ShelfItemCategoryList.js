@@ -23,9 +23,9 @@ const ShelfItemCategoryList= ({itemId, actualCategory, chgCategory, categories})
 
 ShelfItemCategoryList.propTypes = {
     itemId: PropTypes.string.isRequired,
-    actualCategory: PropTypes.string,
+    actualCategory: PropTypes.string.isRequired,
     chgCategory: PropTypes.func,
-    categories: PropTypes.object
+    categories: PropTypes.array
 };
 
 export default ShelfItemCategoryList;

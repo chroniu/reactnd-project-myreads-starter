@@ -26,7 +26,11 @@ class BooksAppContainer extends React.Component {
             );});
     }
 
-   
+    /**
+       @description Changes the showed categories in the 'home'
+       @param {string} id - what category to show
+       @returns nothing
+    */
     chgShowedCategories = (id) => {
         this.setState((state, props) =>{
             let ccategories = state.categories.slice(0);
@@ -51,8 +55,8 @@ class BooksAppContainer extends React.Component {
     changeCategoryFn = (bookId, newCategory) => {
         newCategory = (newCategory === "None" ? "" : newCategory);
 
-        BooksAPI.update(bookId, newCategory).then(res => {
-            console.log(res);
+        BooksAPI.update({id:bookId}, newCategory).then(res => {
+            console.log("update answer:", res); //TODO remove
             const items = this.state.items.filter(book=> book.id !== bookId);
 
             BooksAPI.get(bookId).then(data =>{
