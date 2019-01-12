@@ -7,7 +7,7 @@ Este projeto foi construído para o **Nanodegree React Developer***. O objetivo 
 
 Para rodar o projeto é necessário possuir instalado o Node >= 8.x e o gerenciador de pacotes npm.
 
-Para clonar e instalar as dependencias do projeto, no terminal use os comandos:
+Para clonar e instalar as dependências do projeto, no terminal use os comandos:
 ```bash
    git clone https://github.com/chroniu/reactnd-project-myreads-starter.git
    cd reactnd-project-myreads-starter
