@@ -7,13 +7,15 @@ import PropTypes from 'prop-types';
 const ShelfItemCategoryList= ({itemId, actualCategory, chgCategory, categories}) =>{
     return(
         <div className="book-shelf-changer">
-          <select key={itemId} onChange={event => chgCategory(itemId, event.target.value)}>
+          <select key={itemId}
+                  value={actualCategory}
+                  onChange={event => chgCategory(itemId, event.target.value)}>
             <option disabled>Move To</option>
             {categories.map(({id, message}) =>
                             <option key={id}
                                     value={id}
                                     disabled={id===actualCategory}
-                                    selected={id===actualCategory}>
+                                    >
                                {message}
                              </option>
                             )}
