@@ -35,15 +35,13 @@ class ShelfItemData{
             let items = [];
             data.forEach(book => items.push(new ShelfItemData(book)));
             
-            //console.log("items", items);
             //create  a promise for each book with unkown shelf
             let promises = items.map(
                 (book) => (book.shelf == null ?
-                                        BooksAPI.get(book.id)
-                                        : 0));
-            //console.log("promises", promises);
+                           BooksAPI.get(book.id)
+                           : 0));
+	    // solve the promises and updates the result 
             Promise.all(promises).then(result =>{
-                //console.log('resukt', result);
                 result.forEach((book, index) =>{
                     if(book !== 0)
                         items[index].shelf = book.shelf;

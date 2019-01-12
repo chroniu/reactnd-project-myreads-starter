@@ -6,12 +6,11 @@ import ShelfItem from './ShelfItem';
   @description A component that represents a Shelf. 
 */
 const Shelf = ({items, category, chgCategory, categories}={items:[], category:{key:'',name:''}, chgCategory:null, categories:[]})=>{
-    //items = (items === undefined ? [] : items);
     return(
         <div className="bookshelf">
             <h2 className="bookshelf-title">{category.name}</h2>
             <div className="bookshelf-books">          
-              <ol key={category} className="books-grid">
+              <ol key={category.key} className="books-grid">
                 {items.map (item => (
                     <ShelfItem key={item.id}
                                item={item}

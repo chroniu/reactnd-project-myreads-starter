@@ -61,7 +61,8 @@ class SearchPage  extends React.Component{
     state = {
         items: [],
         suggestions: [],
-        value: ''
+        value: '',
+        searchingMetaData: {key:"foundedBooks", name:''}
     }
 
     /**
@@ -72,28 +73,40 @@ class SearchPage  extends React.Component{
         if(this.state.value === undefined || this.state.value === ""){
             this.setState({
                 items: [],
+                searchingMetaData: {key:"foundedBooks", name:''}
             });
             return;
         }
-        /*this.setState({
-            items: [],
-        });*/
-        
+        this.setState({
+            searchingMetaData: {key:"foundedBooks", name:'Searching...'}
+        });
         
         BooksAPI.search(this.state.value).then(data =>{
             ShelfItemData.processShelfItemsFromAPI(data).then(
-                items => this.setState({items}));
+                items => this.setState({items,
+                                        searchingMetaData: {key:"foundedBooks",
+                                                            name:`${items.length} Books founded`}
+                                       }));
         }).catch(error =>{
             this.setState({
                 items: [],
+                searchingMetaData: {key:"foundedBooks", name:'No Books founded'}
             });
         });
     }
 
     onChange = (event, { newValue, method }) => {
-        this.setState({
-            value: newValue
-        });
+        if(newValue===''){
+            this.setState({
+                items: [],
+                value: newValue,
+                searchingMetaData: {key:"foundedBooks", name:''}
+            });
+        }else{
+            this.setState({
+                value: newValue,
+            });
+        }
     };
     
     onSuggestionsClearRequested = () => {
@@ -151,7 +164,7 @@ class SearchPage  extends React.Component{
               </div>
               <div className="search-books-results">
                 <Shelf items={this.state.items}
-                       category='Founded Books'
+                       category={this.state.searchingMetaData}
                        chgCategory={this.props.chgCategory}
                        categories={this.props.categories}/>
               </div>
@@ -166,4 +179,3 @@ SearchPage.propTypes = {
 };
 
 export default SearchPage;
-
