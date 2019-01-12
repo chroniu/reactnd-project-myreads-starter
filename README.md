@@ -22,7 +22,7 @@ With the dependencies installed, just go to the project folder and type in the t
 
 The application server will be initialized and the application will be accessible at the address given in the output of the previous command. Usually it will be accessible at: [http://localhost:3000].
 
-## Instruções de uso
+## Instructions
 
 The application allows you to sort books into 3 categories:
 - Currently Reading
